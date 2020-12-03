@@ -23,6 +23,8 @@ public class Uri1117 {
 
         media = (nota1 + nota2) / 2;
         System.out.printf("media = %.2f\n", media);
+
+        input.close();
     }
 
 }
