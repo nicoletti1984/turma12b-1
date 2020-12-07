@@ -1,0 +1,23 @@
+package exercicios.exercicio03;
+
+public class ContaPoupanca extends Conta {
+    private static double taxaSaque = 0.1; // static = atributo de classe
+
+    public ContaPoupanca(int numero){
+        super(numero);
+    }
+
+    public static void setTaxaSaque(double taxa) {
+        if(taxa > 0){
+            taxaSaque = taxa;
+        }
+    }
+
+    @Override
+    public void sacar(double valor) {
+        if(valor <= getSaldo() + taxaSaque){
+            super.sacar(valor + taxaSaque);
+        }
+    }
+    
+}
