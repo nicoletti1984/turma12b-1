@@ -8,10 +8,8 @@ public class AppConta {
         Scanner entrada = new Scanner(System.in);
         int opcao;
         int numeroConta;
-        double limiteConta;
-        ContaCorrente cc = null;
-        ContaEspecial ce = null;
-        ContaPoupanca cp = null;
+        double limiteConta, valor;
+        GerenciaConta contas = new GerenciaConta();
 
         do {
             System.out.println("1- nova Conta Corrente");
@@ -28,29 +26,58 @@ public class AppConta {
                 case 1:
                     System.out.println("Informe o número da conta");
                     numeroConta = entrada.nextInt();
-                    cc = new ContaCorrente(numeroConta);
+                    contas.novaContaCorrente(numeroConta);
                     break;
                 case 2:
                     System.out.println("Informe o número da conta");
                     numeroConta = entrada.nextInt();
                     System.out.println("Informe o limite da conta");
                     limiteConta = entrada.nextDouble();
-                    ce = new ContaEspecial(numeroConta, limiteConta);
+                    contas.novaContaEspecial(numeroConta, limiteConta);
                     break;
+
                 case 3:
                     System.out.println("Informe o número da conta");
                     numeroConta = entrada.nextInt();
-                    cp = new ContaPoupanca(numeroConta);
+                    contas.novaContaPoupanca(numeroConta);
                     break;
+
                 case 4:
-                    System.out.println(cc);
+                    System.out.println("Informe o número da conta");
+                    numeroConta = entrada.nextInt();
+                    System.out.println(contas.exibirSaldo(numeroConta));
                     break;
+
                 case 5:
+                    System.out.println("Informe o número da conta");
+                    numeroConta = entrada.nextInt();
+                    System.out.println("Informe o valor do saque");
+                    valor = entrada.nextDouble();
+
+                    boolean sucesso = contas.sacar(numeroConta, valor);
+
+                    if (sucesso) {
+                        System.out.println("Operação realizada.");
+                    } else {
+                        System.out.println("Saque não realizado.");
+                    }
 
                     break;
+
                 case 6:
+                    System.out.println("Informe o número da conta");
+                    numeroConta = entrada.nextInt();
+                    System.out.println("Informe o valor do deposito");
+                    valor = entrada.nextDouble();
+
+                    if (contas.depositar(numeroConta, valor)) {
+                        System.out.println("Operação realizada.");
+                    } else {
+                        System.out.println("Depósito não realizado.");
+                    }
 
                     break;
+
                 case 7:
                     break;
 
@@ -62,5 +89,6 @@ public class AppConta {
         } while (opcao != 7);
 
         entrada.close();
+
     }
 }
