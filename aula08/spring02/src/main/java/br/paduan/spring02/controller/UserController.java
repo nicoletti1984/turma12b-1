@@ -78,10 +78,31 @@ public class UserController {
         if (userFinded != null) {
             if (user.getPassword().equals(userFinded.getPassword())) {
                 UserDto userDto = new UserDto(userFinded);
-                return ResponseEntity.ok(userDto); 
+                return ResponseEntity.ok(userDto);
             }
-            //return ResponseEntity.status(401).build();
+            // return ResponseEntity.status(401).build();
         }
         return ResponseEntity.status(401).build();
     }
+
+    @GetMapping("/id2/{id}")
+    public ResponseEntity<User> buscarPersonalizado(@PathVariable int id) {
+        User userFinded = dao.buscaPorId(id);
+
+        if(userFinded != null){
+            return ResponseEntity.ok(userFinded);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/id3/{id}")
+    public ResponseEntity<Object> buscarUserPersonalizado(@PathVariable int id) {
+        Object userFinded = dao.buscarUsuariosPorId(id);
+
+        if(userFinded != null){
+            return ResponseEntity.ok(userFinded);
+        }
+        return ResponseEntity.notFound().build();
+    }
+    
 }
