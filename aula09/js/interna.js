@@ -20,7 +20,6 @@ function logout() {
 function buscarAnuncios() {
     //let id = document.getElementById("userId").value;
     let user = document.getElementById("selUser");
-    console.log(user.value);
     let id = user[user.selectedIndex].value;
 
     fetch("http://localhost:8080/user/id/" + id)
